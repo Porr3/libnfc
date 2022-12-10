@@ -76,6 +76,9 @@
 #  define ATTRIBUTE_NONNULL( param )
 #  endif
 
+#undef NFC_EXPORT
+#define NFC_EXPORT
+
 #  ifdef __cplusplus
 extern  "C" {
 #  endif                        // __cplusplus

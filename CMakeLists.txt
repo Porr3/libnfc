@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.0)
 
 if (NOT DEFINED CMAKE_BUILD_TYPE)
   set (CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
@@ -73,7 +73,7 @@ option (BUILD_DEBPKG "build debian package ON/OFF" OFF)
 # Doxygen
 SET(builddir "${CMAKE_BINARY_DIR}")
 SET(top_srcdir "${CMAKE_SOURCE_DIR}")
-INCLUDE(UseDoxygen)
+# INCLUDE(UseDoxygen)
 
 IF(DEFINED CMAKE_INSTALL_LIBDIR)
   SET(libdir ${CMAKE_INSTALL_LIBDIR})

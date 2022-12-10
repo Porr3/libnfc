@@ -9,18 +9,18 @@
 # Version: 20101019
 #
 
-FIND_PACKAGE (PkgConfig)
-IF(PKG_CONFIG_FOUND)
+FIND_PACKAGE (PkgConfig QUIET)
+IF(PKG_CONFIG_FOUND AND NOT WIN32)
     # Will find PC/SC library on Linux/BSDs using PkgConfig
     PKG_CHECK_MODULES(PCSC libpcsclite)
 #   PKG_CHECK_MODULES(PCSC QUIET libpcsclite)   # IF CMake >= 2.8.2?
-ENDIF(PKG_CONFIG_FOUND)
+ENDIF(PKG_CONFIG_FOUND AND NOT WIN32)
 
 IF(NOT PCSC_FOUND)
    # Will find PC/SC headers both on Mac and Windows
    FIND_PATH(PCSC_INCLUDE_DIRS WinSCard.h)
    # PCSC library is for Mac, WinSCard library is for Windows
-   FIND_LIBRARY(PCSC_LIBRARIES NAMES PCSC libwinscard)
+   FIND_LIBRARY(PCSC_LIBRARIES NAMES PCSC winscard)
 ENDIF(NOT PCSC_FOUND)
 
 INCLUDE(FindPackageHandleStandardArgs)
