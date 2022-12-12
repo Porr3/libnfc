@@ -69,11 +69,20 @@ option (BUILD_UTILS "build utils ON/OFF" ON)
 
 option (BUILD_DEBPKG "build debian package ON/OFF" OFF)
 
+option (BUILD_DOXYGEN "build doxygen-based documentation ON/OFF" ON)
+option (LIBNFC_STATIC "build libnfc as static library ON/OFF" OFF)
+
+# IF(LIBNFC_STATIC)
+  # MESSAGE(STATUS "Building static libnfc")
+  # ADD_DEFINITIONS(-DNFC_STATIC)
+# ENDIF(LIBNFC_STATIC)
 
 # Doxygen
-SET(builddir "${CMAKE_BINARY_DIR}")
-SET(top_srcdir "${CMAKE_SOURCE_DIR}")
-# INCLUDE(UseDoxygen)
+IF(BUILD_DOXYGEN)
+  SET(builddir "${CMAKE_BINARY_DIR}")
+  SET(top_srcdir "${CMAKE_SOURCE_DIR}")
+  INCLUDE(UseDoxygen)
+ ENDIF(BUILD_DOXYGEN)
 
 IF(DEFINED CMAKE_INSTALL_LIBDIR)
   SET(libdir ${CMAKE_INSTALL_LIBDIR})

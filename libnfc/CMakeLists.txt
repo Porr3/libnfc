@@ -104,6 +104,10 @@ IF(WIN32)
     ADD_LIBRARY(win32lib ALIAS nfc)
   ENDIF()
 
+  IF(LIBNFC_STATIC)
+    target_compile_definitions(nfc PUBLIC NFC_STATIC)
+  ENDIF(LIBNFC_STATIC)
+
   # On Windows the shared (runtime) library should be either in the same 
   # directory as the excutables or in the path, we add it to same directory
   INSTALL(TARGETS nfc RUNTIME DESTINATION bin COMPONENT libraries)
